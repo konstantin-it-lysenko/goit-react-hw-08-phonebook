@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { StyledFormBox } from './ContactForm.styled';
 
 class ContactForm extends Component {
   state = {
@@ -18,21 +18,20 @@ class ContactForm extends Component {
     e.preventDefault();
 
     this.props.onSubmit(this.state);
+
+    this.reset();
+    console.log('Form', this.state);
+  };
+
+  reset = () => {
+    this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
-      <Box
+      <StyledFormBox
         onSubmit={this.handleContactSubmit}
         component="form"
-        sx={{
-          width: 300,
-          borderRadius: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px',
-        }}
-        // noValidate
         autoComplete="off"
       >
         <TextField
@@ -42,8 +41,13 @@ class ContactForm extends Component {
           onChange={this.handleChange}
           label="Name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          variant="outlined"
           required
+          InputProps={{
+            style: { color: 'white' },
+          }}
+          InputLabelProps={{
+            style: { color: 'white' },
+          }}
         />
 
         <TextField
@@ -55,6 +59,12 @@ class ContactForm extends Component {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
+          InputProps={{
+            style: { color: 'white' },
+          }}
+          InputLabelProps={{
+            style: { color: 'white' },
+          }}
         />
         <Button
           type="submit"
@@ -66,7 +76,7 @@ class ContactForm extends Component {
         >
           Add contact
         </Button>
-      </Box>
+      </StyledFormBox>
     );
   }
 }
