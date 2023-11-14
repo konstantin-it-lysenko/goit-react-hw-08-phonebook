@@ -17,9 +17,9 @@ export const Container = styled.div`
 `;
 
 export const MainHeading = styled.h1`
-  margin: 40px 0;
+  margin: 40px 0 30px;
 `;
 
 export const SecondHeading = styled.h2`
-  margin: 40px 0;
+  margin: 40px 0 30px;
 `;
