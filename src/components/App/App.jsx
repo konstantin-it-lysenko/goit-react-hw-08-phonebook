@@ -5,10 +5,6 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
 import { MainHeading, SecondHeading } from './App.styled';
-const id = nanoid();
-const id2 = nanoid();
-
-console.log('ids: ', id, id2);
 
 class App extends Component {
   state = {
@@ -22,18 +18,51 @@ class App extends Component {
   };
 
   formSubmitHandler = ({ name, number }) => {
-    console.log(name, number);
+    const isDuplicate = this.state.contacts.find(
+      contact => contact.name === name
+    );
+
+    if (isDuplicate) return alert(`${name} already exists`);
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, { name, number, id: nanoid() }],
+    }));
+  };
+
+  filterInputHandler = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
+  contactFilterHandler = () => {
+    const { contacts, filter } = this.state;
+    const valueToLowerCase = filter.toLowerCase().trim();
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().trim().includes(valueToLowerCase)
+    );
+    return filteredContacts;
+  };
+
+  deleteContactHandler = filterId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== filterId),
+    }));
   };
 
   render() {
+    const { contacts, filter } = this.state;
+
     return (
       <Container>
         <MainHeading>Phonebook</MainHeading>
         <ContactForm onSubmit={this.formSubmitHandler} />
 
         <SecondHeading>Contacts</SecondHeading>
-        <Filter />
-        <ContactList />
+        <Filter inputValue={filter} onFilter={this.filterInputHandler} />
+        <ContactList
+          contacts={contacts}
+          filtered={this.contactFilterHandler()}
+          onDelete={this.deleteContactHandler}
+        />
       </Container>
     );
   }
