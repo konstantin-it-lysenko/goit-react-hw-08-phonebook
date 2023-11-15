@@ -30,7 +30,9 @@ class App extends Component {
   };
 
   filterInputHandler = e => {
-    this.setState({ filter: e.currentTarget.value });
+    const inputValue = e.currentTarget.value;
+
+    this.setState({ filter: inputValue });
   };
 
   contactFilterHandler = () => {
@@ -50,6 +52,7 @@ class App extends Component {
 
   render() {
     const { contacts, filter } = this.state;
+    const filteredContacts = this.contactFilterHandler();
 
     return (
       <Container>
@@ -58,11 +61,12 @@ class App extends Component {
 
         <SecondHeading>Contacts</SecondHeading>
         <Filter inputValue={filter} onFilter={this.filterInputHandler} />
-        <ContactList
-          contacts={contacts}
-          filtered={this.contactFilterHandler()}
-          onDelete={this.deleteContactHandler}
-        />
+        {filteredContacts && (
+          <ContactList
+            contacts={filteredContacts || contacts}
+            onDelete={this.deleteContactHandler}
+          />
+        )}
       </Container>
     );
   }

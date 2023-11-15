@@ -40,7 +40,13 @@ class ContactForm extends Component {
           value={this.state.name}
           onChange={this.handleChange}
           label="Name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          inputProps={{
+            pattern:
+              "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+            type: 'text',
+            minlength: 2,
+            maxlength: 32,
+          }}
           required
           InputProps={{
             style: { color: 'white' },
@@ -51,14 +57,17 @@ class ContactForm extends Component {
         />
 
         <TextField
-          type="tel"
           name="number"
           value={this.state.number}
           onChange={this.handleChange}
           label="Phone number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
+          inputProps={{
+            pattern:
+              '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
+            type: 'tel',
+            minlength: 10,
+          }}
           InputProps={{
             style: { color: 'white' },
           }}
