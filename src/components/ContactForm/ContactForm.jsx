@@ -20,7 +20,6 @@ class ContactForm extends Component {
     this.props.onSubmit(this.state);
 
     this.reset();
-    console.log('Form', this.state);
   };
 
   reset = () => {
@@ -44,8 +43,8 @@ class ContactForm extends Component {
             pattern:
               "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
             type: 'text',
-            minlength: 2,
-            maxlength: 32,
+            minLength: 2,
+            maxLength: 32,
           }}
           required
           InputProps={{
@@ -66,7 +65,7 @@ class ContactForm extends Component {
             pattern:
               '+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}',
             type: 'tel',
-            minlength: 10,
+            minLength: 10,
           }}
           InputProps={{
             style: { color: 'white' },
