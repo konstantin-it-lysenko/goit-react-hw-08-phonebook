@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import { getContacts } from './../../redux/contactsSlice/contactsSlice';
-import { getFilterValue } from '../../redux/filterSlice/filterSlice';
+import { selectContacts } from '../../redux/contacts/contactsSelectors';
+import { selectFilterValue } from '../../redux/filter/filterSelectors';
 import ContactItem from 'components/ContactItem/ContactItem';
 import { List } from './ContactList.styled';
 
 const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilterValue);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilterValue);
 
   const filterContacts = () => {
     const normalizedFilter = filter.toLowerCase().trim();
