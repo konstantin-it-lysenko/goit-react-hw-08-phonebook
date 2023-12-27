@@ -1,18 +1,16 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../../redux/contacts/contactsSlice';
+import { selectContacts } from '../../redux/contacts/contactsSelectors';
 import { nanoid } from 'nanoid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { StyledFormBox } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addContact,
-  getContacts,
-} from './../../redux/contactsSlice/contactsSlice';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleChange = e => {
