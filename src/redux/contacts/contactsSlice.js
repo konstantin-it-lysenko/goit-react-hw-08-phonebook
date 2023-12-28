@@ -4,11 +4,11 @@ import { addContact, getContacts, deleteContact } from "../../redux/contacts/con
 const initialState = {
     items: [],
     isLoading: false,
-    error: null
+    error: false
 }
 
 const handlePending = (state) => {
-    state.error = null
+    state.error = false
     state.isLoading = true
 }
 
@@ -17,8 +17,8 @@ const handleFulfilled = (state, { payload }) => {
     state.isLoading = false
 }
 
-const handleRejected = (state, { payload }) => {
-    state.error = payload
+const handleRejected = (state) => {
+    state.error = true
     state.isLoading = false
 }
 
@@ -34,7 +34,7 @@ const contactsSlice = createSlice({
             .addCase(addContact.fulfilled, (state, { payload }) => {
                 state.items.push(payload)
                 state.isLoading = false
-                state.error = null
+                state.error = false
             })
             .addCase(addContact.rejected, handleRejected)
             .addCase(deleteContact.pending, handlePending)
@@ -45,7 +45,7 @@ const contactsSlice = createSlice({
 
                 state.items.splice(index, 1)
                 state.isLoading = false
-                state.error = null
+                state.error = false
             })
             .addCase(deleteContact.rejected, handleRejected)
     }
