@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from '../../redux/contacts/contactsSlice';
+import { addContact } from '../../redux/contacts/contactsOperations';
 import { selectContacts } from '../../redux/contacts/contactsSelectors';
-import { nanoid } from 'nanoid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { StyledFormBox } from './ContactForm.styled';
@@ -36,7 +35,7 @@ const ContactForm = () => {
     );
     if (isDuplicate) return alert(`${name} already exists`);
 
-    dispatch(addContact({ name, number, id: nanoid() }));
+    dispatch(addContact({ name, phone: number }));
     reset();
   };
 
