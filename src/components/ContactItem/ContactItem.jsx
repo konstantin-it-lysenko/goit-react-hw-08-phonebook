@@ -1,16 +1,8 @@
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/contactsSlice';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Contact, ContactName, Number } from './ContactItem.styled';
 
-const ContactItem = ({ id, name, number }) => {
-  const dispatch = useDispatch();
-
-  const deleteContactHandler = filterId => {
-    dispatch(deleteContact(filterId));
-  };
-
+const ContactItem = ({ id, name, number, onDelete }) => {
   return (
     <Contact>
       <ContactName>
@@ -18,7 +10,7 @@ const ContactItem = ({ id, name, number }) => {
       </ContactName>
       <IconButton
         onClick={() => {
-          deleteContactHandler(id);
+          onDelete(id);
         }}
         size="large"
       >
