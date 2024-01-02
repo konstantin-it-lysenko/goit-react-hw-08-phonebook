@@ -15,11 +15,3 @@ export const Container = styled.div`
     max-width: 1440px;
   }
 `;
-
-export const MainHeading = styled.h1`
-  margin: 40px 0 30px;
-`;
-
-export const SecondHeading = styled.h2`
-  margin: 40px 0 30px;
-`;
