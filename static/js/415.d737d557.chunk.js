@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgoit_react_hw_08_phonebook=self.webpackChunkgoit_react_hw_08_phonebook||[]).push([[415],{5415:function(o,e,n){n.r(e);n(2791);var t=n(3329);e.default=function(){return(0,t.jsxs)("div",{children:[(0,t.jsx)("h1",{children:"Welcome to Phonebook App"}),(0,t.jsx)("p",{children:"Register to add and save contacts to your phonebook"})]})}}}]);
+//# sourceMappingURL=415.d737d557.chunk.js.map
