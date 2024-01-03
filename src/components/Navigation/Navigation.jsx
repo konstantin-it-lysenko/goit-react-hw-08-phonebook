@@ -1,15 +1,18 @@
-import { useSelector } from 'react-redux';
-import { selectLoggedIn } from '../../redux/auth/authSelectors';
 import { Link } from 'react-router-dom';
 import UserMenu from 'components/UserMenu/UserMenu';
 import { NavList, NavMenu } from './Navigation.styled';
+import { useAuth } from 'hooks/useAuth';
 
 const Navigation = () => {
-  const isLoggedIn = useSelector(selectLoggedIn);
+  const { isLoggedIn } = useAuth();
   return (
     <NavMenu>
       <div>
-        <Link to={'/'}>Home</Link>
+        {isLoggedIn ? (
+          <Link to={'/contacts'}>Contacts</Link>
+        ) : (
+          <Link to={'/'}>Home</Link>
+        )}
       </div>
       {isLoggedIn ? (
         <UserMenu />
