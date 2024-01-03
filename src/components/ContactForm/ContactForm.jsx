@@ -35,7 +35,7 @@ const ContactForm = () => {
     );
     if (isDuplicate) return alert(`${name} already exists`);
 
-    dispatch(addContact({ name, phone: number }));
+    dispatch(addContact({ name, number }));
     reset();
   };
 
