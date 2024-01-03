@@ -44,13 +44,13 @@ const ContactList = () => {
       {isListEmpty && <p>There are no contacts</p>}
       {filteredContacts.length > 0 && (
         <List>
-          {filteredContacts.map(({ id, name, phone }) => {
+          {filteredContacts.map(({ id, name, number }) => {
             return (
               <ContactItem
                 key={id}
                 id={id}
                 name={name}
-                number={phone}
+                number={number}
                 onDelete={deleteContactHandler}
               ></ContactItem>
             );
